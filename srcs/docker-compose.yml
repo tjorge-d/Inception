@@ -1,0 +1,32 @@
+version: '3'
+
+networks:
+  Inception:
+    name: Inception
+
+volumes:
+  mariadb:
+    name: mariadb
+    driver: local
+    driver_opts:
+      device: ./requirements/mariadb
+      o: bind
+      type: none
+  wordpress:
+    name: wordpress
+    driver: local
+    driver_opts:
+      device: ./requirements/wordpress
+      o: bind
+      type: none
+
+services:
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb/.
+#    volumes:
+#     - mariadb:/var/lib/mysql
+    env_file:
+      - .env
+    networks:
+      - Inception
