@@ -2,7 +2,7 @@ version: '3'
 
 networks:
   Inception:
-    name: Inception
+    name: ${NETWORK}
 
 ################ VOLUMES ################
 
@@ -11,14 +11,14 @@ volumes:
     name: mariadb
     driver: local
     driver_opts:
-      device: /home/${USER}/data/mariadb
+      device: /home/${USER}/data/${NETWORK}/mariadb
       o: bind
       type: none
   wordpress:
     name: wordpress
     driver: local
     driver_opts:
-      device: /home/${USER}/data/wordpress
+      device: /home/${USER}/data/${NETWORK}/wordpress
       o: bind
       type: none
 
@@ -33,7 +33,7 @@ services:
     env_file:
       - .env
     networks:
-      - Inception
+      - ${NETWORK}
       
   wordpress:
     container_name: wordpress
@@ -43,7 +43,7 @@ services:
     env_file:
       - .env
     networks:
-      - Inception
+      - ${NETWORK}
     depends_on:
       - mariadb
       
@@ -55,6 +55,6 @@ services:
     env_file:
       - .env
     networks:
-      - Inception
+      - ${NETWORK}
     depends_on:
       - wordpress

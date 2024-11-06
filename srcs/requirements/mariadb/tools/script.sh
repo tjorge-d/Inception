@@ -9,13 +9,13 @@ sleep 3
 service mariadb start
 sleep 3
 
-mysql -e "CREATE DATABASE IF NOT EXISTS $DB_NAME ;"
+mysql -e "CREATE DATABASE IF NOT EXISTS $NETWORK ;"
 mysql -e "CREATE USER IF NOT EXISTS '$USER'@'%' IDENTIFIED BY '$DB_USER_PASSWORD' ;"
-mysql -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$USER'@'%' ;"
+mysql -e "GRANT ALL PRIVILEGES ON $NETWORK.* TO '$USER'@'%' IDENTIFIED BY '$DB_USER_PASSWORD';"
 mysql -e "FLUSH PRIVILEGES;"
 sleep 3
 
 service mariadb stop
 sleep 3
 
-mysqld
+mysqld_safe --bind-address=0.0.0.0

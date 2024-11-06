@@ -1,8 +1,8 @@
 FROM debian:oldstable
 
 RUN apt update -y && \
-    apt upgrade -y && \
-    apt install -y nginx
+    apt upgrade -y
+    #apt install -y nginx
 
 COPY ./tools/script.sh /
 
