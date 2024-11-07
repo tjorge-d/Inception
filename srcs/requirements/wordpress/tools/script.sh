@@ -9,20 +9,22 @@ curl -sO https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
 chmod +x wp-cli.phar
 mv wp-cli.phar /usr/local/bin/wp
 
-# Downloading and Configuring Wordpress #
-echo "Downloading and Configuring Wordpress ..."
-wp core download --allow-root --quiet
-sed -i -r "s/database_name_here/$NETWORK/1" wp-config-sample.php
-sed -i -r "s/username_here/$USER/1" wp-config-sample.php
-sed -i -r "s/password_here/$DB_USER_PASSWORD/1" wp-config-sample.php
-sed -i -r "s/localhost/mariadb/1" wp-config-sample.php
-mv wp-config-sample.php wp-config.php 
-
-# Installing Wordpress #
+# Waiting for MariaDB configuration #
 while ! nc -z mariadb 3306 ; do
   echo "Waiting for MariaDB configuration..."
   sleep 2
 done
+
+# Downloading and Configuring Wordpress #
+echo "Downloading and Configuring Wordpress ..."
+wp core download --allow-root --quiet
+wp config create --allow-root \
+--dbname=$NETWORK \
+--dbuser=$USER \
+--dbpass=$DB_USER_PASSWORD \
+--dbhost=mariadb
+
+# Installing Wordpress #
 wp core install --skip-email --allow-root \
 --url=$USER.42.fr \
 --title=$WP_TITLE \
