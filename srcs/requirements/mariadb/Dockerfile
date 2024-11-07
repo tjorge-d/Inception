@@ -6,5 +6,6 @@ RUN apt update -y && \
 
 COPY ./tools/script.sh /
 
-CMD ["./script.sh"]
+EXPOSE 3306
 
+ENTRYPOINT ["/script.sh"]

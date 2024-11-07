@@ -9,7 +9,7 @@ up:
 
 down :
 	docker-compose -f ./srcs/docker-compose.yml down --rmi all -v
-	sudo rm -rf /home/$(USER)/data/$(NETWORK)/$(USER).42.fr
+	sudo rm -rf /home/$(USER)/data/$(NETWORK)
 
 recreate : down up
 

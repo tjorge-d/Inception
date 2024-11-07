@@ -1,5 +1,7 @@
 version: '3'
 
+################ NETWORKS ################
+
 networks:
   Inception:
     name: ${NETWORK}
@@ -39,7 +41,7 @@ services:
     container_name: wordpress
     build: ./requirements/wordpress/.
     volumes:
-     - wordpress:/var/www/html
+      - wordpress:/var/www/html
     env_file:
       - .env
     networks:
@@ -52,6 +54,8 @@ services:
     build: ./requirements/nginx/.
     volumes:
      - wordpress:/var/www/html
+    ports:
+      - "443:443"
     env_file:
       - .env
     networks:
