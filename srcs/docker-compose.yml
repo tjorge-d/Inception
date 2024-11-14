@@ -3,8 +3,9 @@ version: '3'
 ################ NETWORKS ################
 
 networks:
-  Inception:
-    name: ${NETWORK}
+  42net:
+    name: ${USER}${DOMAIN_SUFFIX}
+    driver: bridge
 
 ################ VOLUMES ################
 
@@ -13,14 +14,14 @@ volumes:
     name: mariadb
     driver: local
     driver_opts:
-      device: /home/${USER}/data/${NETWORK}/mariadb
+      device: /home/${USER}/data/${USER}${DOMAIN_SUFFIX}/mariadb
       o: bind
       type: none
   wordpress:
     name: wordpress
     driver: local
     driver_opts:
-      device: /home/${USER}/data/${NETWORK}/wordpress
+      device: /home/${USER}/data/${USER}${DOMAIN_SUFFIX}/wordpress
       o: bind
       type: none
 
@@ -35,7 +36,9 @@ services:
     env_file:
       - .env
     networks:
-      - ${NETWORK}
+      - 42net
+    expose:
+      - "3306"
       
   wordpress:
     container_name: wordpress
@@ -45,7 +48,9 @@ services:
     env_file:
       - .env
     networks:
-      - ${NETWORK}
+      - 42net
+    expose:
+      - "9000"
     depends_on:
       - mariadb
       
@@ -59,6 +64,6 @@ services:
     env_file:
       - .env
     networks:
-      - ${NETWORK}
+      - 42net
     depends_on:
       - wordpress
