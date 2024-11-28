@@ -2,6 +2,7 @@
 DOMAIN="$USER$DOMAIN_SUFFIX"
 
 if [ -f /my_nginx.conf ]; then
+
   # Generating a self signing certificate and  a private key with OpenSSL #
   echo "Generating key and certificate (OpenSSL) ..."
   openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
@@ -14,6 +15,7 @@ if [ -f /my_nginx.conf ]; then
   sed -i "s/domain_here/$DOMAIN/g" my_nginx.conf
   mv my_nginx.conf /etc/nginx/conf.d/$DOMAIN.conf
   mkdir -p /run/nginx
+
 fi
 
 echo "Nginx is ready!"

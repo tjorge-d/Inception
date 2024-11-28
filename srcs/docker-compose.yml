@@ -1,15 +1,15 @@
 version: '3'
 
-################ NETWORKS ################
-
+# NETWORKS #
 networks:
+
   42net:
     name: ${USER}${DOMAIN_SUFFIX}
     driver: bridge
 
-################ VOLUMES ################
-
+# VOLUMES #
 volumes:
+
   mariadb:
     name: mariadb
     driver: local
@@ -17,6 +17,7 @@ volumes:
       device: /home/${USER}/data/${USER}${DOMAIN_SUFFIX}/mariadb
       o: bind
       type: none
+
   wordpress:
     name: wordpress
     driver: local
@@ -25,9 +26,9 @@ volumes:
       o: bind
       type: none
 
-################ SERVICES ################
+# SERVICES #
 services:
-  
+
   mariadb:
     container_name: mariadb
     build: ./requirements/mariadb/.

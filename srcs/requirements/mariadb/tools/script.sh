@@ -6,7 +6,7 @@ echo "Configuring MariaDB ..."
 service mariadb start > /dev/null
 mysql -e "CREATE DATABASE IF NOT EXISTS \`$DOMAIN\` ;"
 mysql -e "CREATE USER IF NOT EXISTS '$USER'@'%' IDENTIFIED BY '$DB_USER_PASSWORD' ;"
-mysql -e "GRANT ALL PRIVILEGES ON \`$DOMAIN\`.* TO '$USER'@'%' IDENTIFIED BY '$DB_USER_PASSWORD';"
+mysql -e "GRANT ALL PRIVILEGES ON \`$DOMAIN\`.* TO '$USER'@'%' IDENTIFIED BY '$DB_ROOT_PASSWORD';"
 mysql -e "FLUSH PRIVILEGES ;"
 
 # Reseting Mariadb so the changes take effect #
