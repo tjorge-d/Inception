@@ -17,7 +17,7 @@ A container **image** must be built for each service so all the **dependencies**
 A **volume** must also be defined and mounted with **Docker-compose** so the services can store/access data from the **host OS** that persists during and after running services.
 
 ```sh
-make up  # Creates a file to use as a volume and starts the services
+make up  # Creates a folder to use as a volume and starts the services
 ```
 
 Other **make** commands can also be executed to interact with the application.
