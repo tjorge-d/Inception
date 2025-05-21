@@ -1,5 +1,5 @@
 # :computer: INCEPTION
-**Inception** is a project about **containerizing** multiple services ( **MariaDB**, **Nginx**, **WordPress** ) and making them **communicate** with each other in order to **host** a website.
+**Inception** is a project about **containerizing** multiple services (**MariaDB**, **Nginx**, **WordPress**) and making them **communicate** with each other in order to **host** a website.
 
 ![Screenshot from 2025-05-19 11-58-53](https://github.com/user-attachments/assets/071482f2-76e2-4f03-a79e-089909dbbf30)
 
