@@ -1,4 +1,4 @@
-# INCEPTION
+# :computer: INCEPTION
 **Inception** is a project about **containerizing** multiple services ( **MariaDB**, **Nginx**, **WordPress** ) and making them **communicate** with each other in order to **host** a website.
 
 ![Screenshot from 2025-05-19 11-58-53](https://github.com/user-attachments/assets/071482f2-76e2-4f03-a79e-089909dbbf30)
@@ -6,6 +6,29 @@
 <br>
 
 ## :key: Key components
+
+### Configuration
+
+A hidden **environment** file (.env) will be sent to each container in order to define the **domain** and name of the website and **credentials** for an admin and user of both the **database** and the **website**
+
+### Initialization
+
+A container **image** must be built for each service so all the **dependencies**, **libraries**, and **OS-level files** are know to docker when initializing the container, like a **blueprint**.
+A **volume** must also be defined and mounted with **Docker-compose** so the services can store/access data from the **host OS** that persists during and after running services.
+
+```sh
+make up  # Creates a file to use as a volume and starts the services
+```
+
+Other **make** commands can also be executed to interact with the application.
+
+```sh
+make down        # Stops and removes all containers, images, volumes and cleans the folders used
+make recreate    # Calls "down" and then "up" to restart the application from a clean start
+make stop        # Stops the application without destroying anything
+make start       # Starts the application
+make status      # Shows all running containers.
+```
 
 ### Containerization
 
